@@ -20,8 +20,9 @@ Pod::Spec.new do |s|
   s.static_framework = true
   s.library = 'c++'
   
-  s.frameworks = 'Foundation', 'UIKit', 'AVFoundation', 'CoreMedia', 'Accelerate', 'VideoToolbox'
-  s.dependency 'TensorFlowLite'
+  s.frameworks = 'Foundation', 'UIKit', 'AVFoundation', 'CoreMedia', 'Accelerate', 'VideoToolbox', 'Metal'
+  s.dependency 'TensorFlowLiteGpuExperimental'
+  # s.dependency 'TensorFlowLite'
   
   s.source_files = 'TensorIO/Classes/**/*'
   s.private_header_files = [
@@ -29,6 +30,7 @@ Pod::Spec.new do |s|
   ]
   
   s.xcconfig = {
-    'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/TensorFlowLite/Frameworks/tensorflow_lite.framework/Headers"',
+    'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/TensorFlowLite/Frameworks/tensorflow_lite_gpu.framework/Headers"'
+    # 'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/TensorFlowLite/Frameworks/tensorflow_lite.framework/Headers"'
   }
 end

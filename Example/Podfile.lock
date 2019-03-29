@@ -1,22 +1,22 @@
 PODS:
-  - TensorFlowLite (1.13.1)
-  - TensorIO (0.4.1):
-    - TensorFlowLite
+  - TensorFlowLiteGpuExperimental (0.0.1)
+  - TensorIO (0.4.2):
+    - TensorFlowLiteGpuExperimental
 
 DEPENDENCIES:
   - TensorIO (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - TensorFlowLite
+    - TensorFlowLiteGpuExperimental
 
 EXTERNAL SOURCES:
   TensorIO:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TensorFlowLite: 8b9dc4eb32eac0f8cb660c66bca7604da56dcc5a
-  TensorIO: 25588fee92d13804133012019d174d6e47d38fdb
+  TensorFlowLiteGpuExperimental: 16d9be415bce7b2bba9e0be17e2009fd57428d0f
+  TensorIO: 9e323b5b08c36df3ad20f9ea76811d8c02ff52aa
 
 PODFILE CHECKSUM: 92aac65e2067c39e295dba1566637b029ac5a217
 

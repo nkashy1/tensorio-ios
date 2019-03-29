@@ -20,12 +20,21 @@
 
 #import "TIOTFLiteModel.h"
 
+#define TFLITE_USE_GPU_DELEGATE 1
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
 
+#if TFLITE_USE_GPU_DELEGATE
+#include "tensorflow/lite/delegates/gpu/metal_delegate.h"
 #include "tensorflow/lite/kernels/register.h"
 #include "tensorflow/lite/model.h"
 #include "tensorflow/lite/string_util.h"
+#else
+#include "tensorflow/lite/kernels/register.h"
+#include "tensorflow/lite/model.h"
+#include "tensorflow/lite/string_util.h"
+#endif
 
 #pragma clang diagnostic pop
 
@@ -276,11 +285,28 @@ static NSString * const kTensorTypeImage = @"image";
         *error = kTIOTFLiteModelConstructInterpreterError;
         return NO;
     }
+    
+    // Use GPU delegate or allocate tensors
+    
+    #if TFLITE_USE_GPU_DELEGATE
+    
+    auto *gpu_delegate = NewGpuDelegate(nullptr);
+    
+    if (interpreter->ModifyGraphWithDelegate(delegate) != kTfLiteOk) {
+        NSLog(@"Failed to modify graph with GPU delegate for model %@", self.identifier);
+        *error = kTIOTFLiteModelGPUDelegateError;
+        return NO;
+    }
+    
+    #else
+    
     if (interpreter->AllocateTensors() != kTfLiteOk) {
         NSLog(@"Failed to allocate tensors for model %@", self.identifier);
         *error = kTIOTFLiteModelAllocateTensorsError;
         return NO;
     }
+
+    #endif
     
     _loaded = YES;
     

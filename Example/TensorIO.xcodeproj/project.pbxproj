@@ -543,6 +543,11 @@
 				DEVELOPMENT_TEAM = X44T8YD52X;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TensorIO/TensorIO-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TensorIO/TensorIO.framework/Headers\"",
+					"'${SRCROOT}/Pods/TensorFlowLiteGpuExperimental/Frameworks/tensorflow_lite_gpu.framework/Headers'",
+				);
 				INFOPLIST_FILE = "TensorIO/TensorIO-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
@@ -559,6 +564,11 @@
 				DEVELOPMENT_TEAM = X44T8YD52X;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TensorIO/TensorIO-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TensorIO/TensorIO.framework/Headers\"",
+					"'${SRCROOT}/Pods/TensorFlowLiteGpuExperimental/Frameworks/tensorflow_lite_gpu.framework/Headers'/**",
+				);
 				INFOPLIST_FILE = "TensorIO/TensorIO-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
