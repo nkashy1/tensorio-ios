@@ -25,15 +25,12 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
 
+#include "tensorflow/lite/kernels/register.h"
+#include "tensorflow/lite/model.h"
+#include "tensorflow/lite/string_util.h"
+
 #if TFLITE_USE_GPU_DELEGATE
 #include "tensorflow/lite/delegates/gpu/metal_delegate.h"
-#include "tensorflow/lite/kernels/register.h"
-#include "tensorflow/lite/model.h"
-#include "tensorflow/lite/string_util.h"
-#else
-#include "tensorflow/lite/kernels/register.h"
-#include "tensorflow/lite/model.h"
-#include "tensorflow/lite/string_util.h"
 #endif
 
 #pragma clang diagnostic pop
@@ -292,7 +289,7 @@ static NSString * const kTensorTypeImage = @"image";
     
     auto *gpu_delegate = NewGpuDelegate(nullptr);
     
-    if (interpreter->ModifyGraphWithDelegate(delegate) != kTfLiteOk) {
+    if (interpreter->ModifyGraphWithDelegate(gpu_delegate) != kTfLiteOk) {
         NSLog(@"Failed to modify graph with GPU delegate for model %@", self.identifier);
         *error = kTIOTFLiteModelGPUDelegateError;
         return NO;

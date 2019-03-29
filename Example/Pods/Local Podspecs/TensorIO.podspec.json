@@ -39,6 +39,6 @@
     "TensorIO/Classes/TIO Model/TIOPixelBufferToTensorHelpers.h"
   ],
   "xcconfig": {
-    "USER_HEADER_SEARCH_PATHS": "\"${PODS_ROOT}/TensorFlowLite/Frameworks/tensorflow_lite_gpu.framework/Headers\""
+    "USER_HEADER_SEARCH_PATHS": "\"${PODS_ROOT}/TensorFlowLiteGpuExperimental/Frameworks/tensorflow_lite_gpu.framework/Headers\""
   }
 }

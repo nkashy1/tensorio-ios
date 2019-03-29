@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   ]
   
   s.xcconfig = {
-    'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/TensorFlowLite/Frameworks/tensorflow_lite_gpu.framework/Headers"'
+    'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/TensorFlowLiteGpuExperimental/Frameworks/tensorflow_lite_gpu.framework/Headers"'
     # 'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/TensorFlowLite/Frameworks/tensorflow_lite.framework/Headers"'
   }
 end
