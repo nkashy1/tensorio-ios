@@ -119,7 +119,9 @@ TIOLayerInterface * _Nullable TIOTFLiteModelParseTIOVectorDescription(NSDictiona
 
 TIOLayerInterface * _Nullable TIOTFLiteModelParseTIOPixelBufferDescription(NSDictionary *dict, BOOL isInput, BOOL quantized) {
     NSArray<NSNumber*> *shape = dict[@"shape"];
-    BOOL batched = shape[0].integerValue == -1;
+    // TEMPORARY FIX FOR FIXED BATCH SIZES (#79)
+    BOOL batched = shape.count == 4;
+    // BOOL batched = shape[0].integerValue == -1;
     
     NSString *name = dict[@"name"];
     BOOL isOutput = !isInput;
@@ -284,8 +286,14 @@ TIOImageVolume TIOImageVolumeForShape(NSArray<NSNumber*> * _Nullable shape) {
                 .channels = (int)shape[2].integerValue
             };
         } else {
-            NSLog(@"Shape has four dimenions, indicating there is a dimension for the batch size, but neither the zeroeth index or third index has a value of -1");
-            return kTIOImageVolumeInvalid;
+            // TEMPORARY FIX FOR FIXED BATCH SIZES (DOES NOT KNOW WHICH DIMENSION IT IS!) (#79)
+            return {
+                .height = (int)shape[1].integerValue,
+                .width = (int)shape[2].integerValue,
+                .channels = (int)shape[3].integerValue
+            };
+            // NSLog(@"Shape has four dimenions, indicating there is a dimension for the batch size, but neither the zeroeth index or third index has a value of -1");
+            // return kTIOImageVolumeInvalid;
         }
     }
     
