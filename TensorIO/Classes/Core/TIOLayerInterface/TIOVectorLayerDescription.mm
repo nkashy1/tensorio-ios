@@ -40,7 +40,8 @@
         _quantizer = quantizer;
         _dequantizer = dequantizer;
         
-        _length = ABS(shape.product);
+        // TEMPORARY FIX FOR SCALAR VALUES (#32)
+        _length = shape.count == 0 ? 1 : ABS(shape.product);
     }
     return self;
 }

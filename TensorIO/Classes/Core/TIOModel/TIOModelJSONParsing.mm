@@ -46,7 +46,10 @@ static NSError * const kTIOParserInvalidDequantizerError = [NSError errorWithDom
 
 TIOLayerInterface * _Nullable TIOTFLiteModelParseTIOVectorDescription(NSDictionary *dict, BOOL isInput, BOOL quantized, TIOModelBundle *bundle) {
     NSArray<NSNumber*> *shape = dict[@"shape"];
-    BOOL batched = shape[0].integerValue == -1;
+    
+    // TEMPORARY FIX FOR SCALAR VALUES (#32)
+    BOOL scalar = shape.count == 0;
+    BOOL batched = scalar ? NO : shape[0].integerValue == -1;
     
     NSString *name = dict[@"name"];
     BOOL isOutput = !isInput;
